@@ -1,10 +1,15 @@
-import { ID , storage } from '../appwrite'
+import { storage } from "../appwrite";
 
-
-const getURL = async (image:any)=>{
-    const url = storage.getFilePreview(image.bucketId , image.fileId );
-    return url ;
+interface ImageType {
+  bucketId: string;
+  fileId: string;
 }
 
+const getURL = async (image: ImageType) => {
+  if (!image?.bucketId || !image?.fileId) {
+    throw new Error("Invalid image object");
+  }
+  return storage.getFilePreview(image.bucketId, image.fileId);
+};
 
-export default getURL
+export default getURL;

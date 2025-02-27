@@ -10,15 +10,14 @@ const Board = () => {
     const updateDb = useBoardStore((state)=> state.updateTodoInDB)
     const id = board?.columns
     useEffect(() => {
-        getBoard(); // Fetch data once when the component mounts
-    }, [getBoard]); // Add `getBoard` as a dependency
+        getBoard(); 
+    }, [getBoard]); 
 
     const handleOnDragEnd = (result: DropResult) => {
         const { source, destination, type } = result;
     
         if (!destination) return;
     
-        // 🟢 Handling Column Reordering
         if (type === "column") {
             const entries = Array.from(board.columns.entries());
             const [removed] = entries.splice(source.index, 1);
@@ -27,8 +26,7 @@ const Board = () => {
             setBoard({ ...board, columns: reArrangedColumns });
             return;
         }
-    
-        // 🟢 Handling Todo Movement
+
         const startColIndex = board.columns.get(source.droppableId);
         const finishColIndex = board.columns.get(destination.droppableId);
     
@@ -48,18 +46,17 @@ const Board = () => {
         };
     
         if (source.index === destination.index && startCol.id === finishCol.id) return;
-    
-        // Remove the dragged todo from the source column
+  
         const [removed] = startCol.todos.splice(source.index, 1);
     
         const newColumns = new Map(board.columns);
     
         if (startCol.id === finishCol.id) {
-            // 🟢 Moving within the same column
+  
             startCol.todos.splice(destination.index, 0, removed);
             newColumns.set(startCol.id, startCol);
         } else {
-            // 🟢 Moving between columns
+         
             finishCol.todos.splice(destination.index, 0, removed);
             newColumns.set(startCol.id, { id: startCol.id, todos: startCol.todos });
             newColumns.set(finishCol.id, { id: finishCol.id, todos: finishCol.todos });

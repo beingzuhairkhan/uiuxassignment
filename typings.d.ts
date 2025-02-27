@@ -14,7 +14,7 @@ export interface Todo {
     $createdAt: string;
     $title: string;
     status: TypedColumns;
-    image?: string;
+    image?: { bucketId: string; fileId: string } | null;
 }
 
 export interface Image {

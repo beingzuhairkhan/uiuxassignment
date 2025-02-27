@@ -1,4 +1,4 @@
-import { MagnifyingGlassIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Avatar from "react-avatar";
 import { useBoardStore } from "../../../store/BoardStore";
 
