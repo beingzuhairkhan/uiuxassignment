@@ -5,7 +5,7 @@ import Column from './Column'
 import { Columns } from '../../../typings'
 const Board = () => {
     const getBoard = useBoardStore((state) => state.getBoard);
-    const board = useBoardStore((state) => state.board) as { columns: Map<string, { todos: any[] }> };
+    const board = useBoardStore((state) => state.board)
     const setBoard = useBoardStore((state) => state.setBoardState)
     const updateDb = useBoardStore((state)=> state.updateTodoInDB)
     const id = board?.columns

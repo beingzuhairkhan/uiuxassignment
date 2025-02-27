@@ -95,7 +95,7 @@ export const useBoardStore = create<BoardState>((set , get)=>({
               $createdAt:new Date().toISOString(),
               $title:todo,
               status:columnId,
-             ...(file && {image : JSON.stringify(file)})
+             ...(file && {image : file})
             }
             const column = newColumns.get(columnId)
             if(column){

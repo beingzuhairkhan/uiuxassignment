@@ -33,14 +33,7 @@ const Column = ({ id, todos, index }: ColumnProps) => {
           {...provided.dragHandleProps}
         //className="p-4 bg-gray-200 rounded-lg shadow-md"
         >
-          {/* 🟢 Add dragHandleProps Here! */}
-          {/* <h2
          
-            className="text-lg font-bold cursor-pointer"
-          >
-            {idToColumnText[id]}
-           
-          </h2> */}
 
           <Droppable droppableId={id.toString()} type="card">
             {(provided, snapshot) => (

@@ -9,7 +9,7 @@ type Props = {
     todo:Todo;
     index:number;
     id:TypedColumns;
-    innerRef: (element?: HTMLElement | null ) => void
+    innerRef: (element: HTMLElement | null) => void;
     draggableProps:DraggableProvidedDraggableProps;
     dragHandleProps:DraggableProvidedDragHandleProps | null | undefined
 }
@@ -22,10 +22,13 @@ const TodoCard = ({todo , index , id , innerRef , draggableProps ,dragHandleProp
     useEffect(()=>{
         if(todo.image){
             const fechImage = async ()=>{
-                const url = await getURL(todo.image)
-                if(url){
-                    setImageURL(url.toString())
+                if (todo.image) {
+                    const url = await getURL(todo.image)
+                    if (url) {
+                        setImageURL(url.toString())
+                    }
                 }
+                
             }
             fechImage()
         }
@@ -34,7 +37,8 @@ const TodoCard = ({todo , index , id , innerRef , draggableProps ,dragHandleProp
     return(
         <>
         <div className="bg-white rounded-md space-y-2 drop-shadow-md mt-4 "
-        {...draggableProps} {...dragHandleProps} ref={innerRef}
+       ref={innerRef}
+        {...draggableProps} {...dragHandleProps} 
         >
        <div className="flex justify-between items-center p-3" >
         <p > {todo.$title} </p>
