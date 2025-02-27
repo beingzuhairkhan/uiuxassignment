@@ -2,13 +2,13 @@ import { DragDropContext, Droppable, type DropResult } from 'react-beautiful-dnd
 import { useEffect } from 'react';
 import { useBoardStore } from '../../../store/BoardStore';
 import Column from './Column'
-import { Columns } from '../../../typings'
+import { Columns , TypedColumns } from '../../../typings'
 const Board = () => {
     const getBoard = useBoardStore((state) => state.getBoard);
     const board = useBoardStore((state) => state.board)
     const setBoard = useBoardStore((state) => state.setBoardState)
     const updateDb = useBoardStore((state)=> state.updateTodoInDB)
-    const id = board?.columns
+    const id = "board-columns"
     useEffect(() => {
         getBoard(); 
     }, [getBoard]); 
@@ -27,8 +27,8 @@ const Board = () => {
             return;
         }
 
-        const startColIndex = board.columns.get(source.droppableId);
-        const finishColIndex = board.columns.get(destination.droppableId);
+        const startColIndex = board.columns.get(source.droppableId as TypedColumns);
+        const finishColIndex = board.columns.get(destination.droppableId as TypedColumns);
     
         if (!startColIndex || !finishColIndex) return;
     
@@ -65,6 +65,8 @@ const Board = () => {
         updateDb(removed , finishCol.id)
         setBoard({ ...board, columns: newColumns });
     };
+
+    // const id = board.columns
     
 
     // console.log("data", board?.columns);
